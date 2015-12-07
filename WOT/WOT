@@ -1,0 +1,10 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="5">
+            <File firstVisibleLine="1484" xOffset="0" scrollWidth="1269" startPos="80964" endPos="80964" selMode="0" lang="C++" encoding="-1" filename="C:\Program Files (x86)\MTA San Andreas 1.4\server\mods\deathmatch\resources\CLuaMain.cpp" backupFilePath="" originalFileLastModifTimestamp="1409498729" />
+            <File firstVisibleLine="660" xOffset="0" scrollWidth="1946" startPos="31112" endPos="31112" selMode="0" lang="C++" encoding="-1" filename="C:\Program Files (x86)\MTA San Andreas 1.4\server\mods\deathmatch\resources\CLuaMain_Server.cpp" backupFilePath="" originalFileLastModifTimestamp="1408853095" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="707" startPos="691" endPos="691" selMode="0" lang="Normal Text" encoding="-1" filename="C:\Users\Tashawn\MEGA\Public\codes.txt" backupFilePath="" originalFileLastModifTimestamp="1408824514" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

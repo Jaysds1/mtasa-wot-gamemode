@@ -1,0 +1,34 @@
+<meta>
+	<info name="World of Tanks Gamemode" description="Copy of World of Tanks The Game." author="Jaysds1" version="1.0.0" type="gamemode" />
+
+	<script src="client.lua" type="client" />
+	<script src="server.lua" />
+	
+	<file src="images/mm1.jpg" />
+	<file src="images/mm2.jpg" />
+	<file src="images/mm3.jpg" />
+	<file src="images/mm4.jpg" />
+	
+	<oop>true</oop>
+	<aclrequest>
+		<right name="function.addAccount" access="true" />
+		<right name="function.startResource" access="true" />
+		<right name="function.stopResource" access="true" />
+	</aclrequest>
+	
+	<game>
+		<!-- Load Resources -->
+		<login>
+			<!-- Show Menu -->
+			<mainmenu>
+				<!-- Check if the game has started else show lobby -->
+				<lobby>
+					<!-- Load map and spawn player -->
+					<ingame><!-- Play --></ingame>
+				</lobby>
+				<ingame></ingame>
+			</mainmenu>
+		</login>
+	</game>
+	
+</meta>

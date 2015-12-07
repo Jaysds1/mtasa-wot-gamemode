@@ -1,0 +1,12 @@
+<map edf:definitions="editor_main">
+    <object id="object (laeJeffers10) (1)" breakable="true" interior="0" alpha="255" model="5428" doublesided="false" scale="1" dimension="0" posX="1719.1" posY="-3638.5" posZ="1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (laeJeffers10) (2)" breakable="true" interior="0" alpha="255" model="5428" doublesided="false" scale="1" dimension="0" posX="1660.3" posY="-3637.6001" posZ="1" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (laeJeffers10) (3)" breakable="true" interior="0" alpha="255" model="5428" doublesided="false" scale="1" dimension="0" posX="1660.3" posY="-3565.5" posZ="1.1" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (laeJeffers10) (4)" breakable="true" interior="0" alpha="255" model="5428" doublesided="false" scale="1" dimension="0" posX="1718.9" posY="-3566.3999" posZ="1.1" rotX="0" rotY="0" rotZ="359.995"></object>
+    <object id="object (mil_hangar1_) (1)" breakable="true" interior="0" alpha="255" model="3268" doublesided="false" scale="1" dimension="0" posX="1690.5" posY="-3565.5" posZ="0.8" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (mil_hangar1_) (2)" breakable="true" interior="0" alpha="255" model="3268" doublesided="false" scale="1" dimension="0" posX="1688.4" posY="-3638.2" posZ="0.9" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (bonyrd_block3_) (1)" breakable="true" interior="0" alpha="255" model="3271" doublesided="false" scale="1" dimension="0" posX="1661.7" posY="-3602.3" posZ="0.8" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bonyrd_block3_) (2)" breakable="true" interior="0" alpha="255" model="3271" doublesided="false" scale="1" dimension="0" posX="1721.6" posY="-3601.3" posZ="0.8" rotX="0" rotY="0" rotZ="190"></object>
+    <object id="object (helipad01) (1)" breakable="true" interior="0" alpha="255" model="3934" doublesided="false" scale="1" dimension="0" posX="1681.7" posY="-3605.3" posZ="0.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (helipad01) (2)" breakable="true" interior="0" alpha="255" model="3934" doublesided="false" scale="1" dimension="0" posX="1702.9" posY="-3604.6001" posZ="0.9" rotX="0" rotY="0" rotZ="0"></object>
+</map>
