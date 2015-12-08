@@ -16,20 +16,27 @@ This gamemode was created before by me... but it ended up being lost as my old p
 #Getting Started
 In order to contribute to this project, you would need to know and have the following tools:
 
-Knowledge:
+    Knowledge:
 
-    Lua - http://www.lua.org
+        Lua
+        http://lua.org
     
-    MTASA Scripting - https://wiki.multitheftauto.com/wiki/Main_Page
+        MTASA Scripting
+        https://wiki.multitheftauto.com/wiki/Main_Page
     
-    English(Might work in other languages later!) - http://www.englishpage.com/
-Tools:
+        English(Might work in other languages later!)
+        http://englishpage.com
 
-    Notepad++(Not really needed, more like suggested) - https://notepad-plus-plus.org/
+    Tools:
+
+        Notepad++(Not really needed, more like suggested)
+        https://notepad-plus-plus.org
     
-    MTASA Client and Server - https://mtasa.com
+        MTASA Client and Server
+        https://mtasa.com
+
 
 #Directory Structure
-WOT - Is the main resource everything is running in. (The Core)
+WOT - Is the main resource everything is running in (The Core).
 
 [maps] - Holds the maps for the server to run.
