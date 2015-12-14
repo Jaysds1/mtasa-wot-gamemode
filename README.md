@@ -40,3 +40,26 @@ In order to contribute to this project, you would need to know and have the foll
 WOT - Is the main resource everything is running in (The Core).
 
 [maps] - Holds the maps for the server to run.
+
+#Roadmap
+- [ ] Creating the core
+-   [x] Setup login system
+-   [ ] Create a lobby
+-       [x] Players list
+-       [ ] Player Tank Showcase
+-   [x] Setup map system
+-       [x] Find compatible maps
+-       [x] Choose a random map
+-       [x] Load spawns
+-   [x] Team Manager
+-       [x] Assign players to random team
+-       [x] When a player joins, add to team with least players
+-   [ ] Setup basic in-game system
+-        [x] Show health
+-        [x] Show scoreboard
+-        [ ] Show player aim (GUI/DX used)
+- [ ] Features
+-   [ ] Line of sight visibility
+-   [ ] Camouflage with elements
+-   [ ] Reload waiting
+-   [ ] Vehicle parts breakdown (Tires can't move after hit)
