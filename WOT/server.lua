@@ -7,37 +7,37 @@ addEvent("onClientEnter",true)
 --TODO: Blips,Scoreboard,In-Water Timer
 
 WOT = {
-	isGameStarted = false,
-	GT = {
-		_t = false,
-		executes = 0,
-		isOn = function()
-			if not WOT.GT._t then return false
-			elseif not (WOT.GT._t).valid then return false
-			else return true
+	isGameStarted = false, -- Is the players playing?
+	GT = { --Game Timer Table/Class
+		_t = false, --The timer
+		executes = 0, --How much times did this timer execute?
+		isOn = function() --Checks if timer is on
+			if not WOT.GT._t then return false --Is the timer set?
+			elseif not (WOT.GT._t).valid then return false --Is the timer valid?
+			else return true --No more methods to check, just say it's on
 			end
 		end,
-		create = function(_i,_func)
-			_func = _func or _onExecute
-			if WOT.GT.isOn() then
+		create = function(_i,_func) --Creates a timer
+			_func = _func or _onExecute --Checks if a function is declared and sets a default function
+			if WOT.GT.isOn() then --Checks if a timer is already running
 				--outputDebug()
-				outputChatBox("Timer already running!")
-				return false
+				outputChatBox("Timer already running!") --Let the user know
+				return false --end the create transaction
 			end
-			WOT.GT._t = Timer(_func,_i,0)
+			WOT.GT._t = Timer(_func,_i,0) --Creates a timer
 		end,
-		destroy = function()
-			if not WOT.GT.isOn() then
+		destroy = function() --Destroys a timer
+			if not WOT.GT.isOn() then --Checks if a timer is not running
 				--[[outputDebug()]]
-				outputChatBox("Timer not running!")
-				return false
+				outputChatBox("Timer not running!") --Let the user know
+				return false--end the destroy transaction
 			end
-			WOT.GT._t:destroy()
+			WOT.GT._t:destroy() --destroy the timer
 			WOT.GT._t = false
 			executes = 0
 		end
 	},
-	ready = {}
+	ready = {} --Players that's ready
 }
 teamHandler = {
 	teams = {
