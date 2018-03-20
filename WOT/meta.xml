@@ -1,6 +1,11 @@
 <meta>
 	<info name="World of Tanks Gamemode" description="Copy of World of Tanks The Game." author="Jaysds1" version="1.0.0" type="gamemode" />
 
+	<script src="class.lua" type="shared"/>
+	<script src="MapHandler.lua" type="shared"/>
+	<script src="Game.lua" type="server"/>
+	<script src="TeamManager.lua" type="shared"/>
+	<script src="GameTimer.lua" type="shared"/>
 	<script src="client.lua" type="client" />
 	<script src="server.lua" />
 	
@@ -15,20 +20,20 @@
 		<right name="function.startResource" access="true" />
 		<right name="function.stopResource" access="true" />
 	</aclrequest>
-	
+	<!--
 	<game>
-		<!-- Load Resources -->
+		-- Load Resources
 		<login>
-			<!-- Show Menu -->
+			-- Show Menu
 			<mainmenu>
-				<!-- Check if the game has started else show lobby -->
+				-- Check if the game has started else show lobby
 				<lobby>
-					<!-- Load map and spawn player -->
-					<ingame><!-- Play --></ingame>
+					--Load map and spawn player
+					<ingame> Play </ingame>
 				</lobby>
 				<ingame></ingame>
 			</mainmenu>
 		</login>
 	</game>
-	
+	-->
 </meta>

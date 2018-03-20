@@ -1,3 +1,11 @@
+--[[
+@author Jaysds1
+@version 1.0.0
+
+	Event: onResourceDownloaded;
+	Purpose: Called after client downloaded 'client.lua'
+]]
+--Create Custom Events
 addEvent("onResourceDownloaded",true)
 addEvent("onPlayerSubmitLogin",true)
 addEvent("onPlayerSubmitSignup",true)
@@ -7,37 +15,48 @@ addEvent("onClientEnter",true)
 --TODO: Blips,Scoreboard,In-Water Timer
 
 WOT = {
-	isGameStarted = false, -- Is the players playing?
-	GT = { --Game Timer Table/Class
-		_t = false, --The timer
-		executes = 0, --How much times did this timer execute?
-		isOn = function() --Checks if timer is on
-			if not WOT.GT._t then return false --Is the timer set?
-			elseif not (WOT.GT._t).valid then return false --Is the timer valid?
-			else return true --No more methods to check, just say it's on
+	--World Of Tanks whole variable database;
+	isGameStarted = false, --is the players playing a game and not in lobby
+	setGameStarted = function(start)
+		if(type(start) ~= "boolean")then
+			return false
+		end
+		self.isGameStarted = start
+	end,
+	GT = {
+		--Game Timer variable database;
+		_t = false, --Timer
+		executes = 0, --Times Timer has been executed
+		isOn = function()
+			--Is timer running?
+			if not WOT.GT._t then return false
+			elseif not WOT.GT._t.valid then return false
+			else return true
 			end
 		end,
-		create = function(_i,_func) --Creates a timer
-			_func = _func or _onExecute --Checks if a function is declared and sets a default function
-			if WOT.GT.isOn() then --Checks if a timer is already running
+		create = function(_i,_func)
+			--Create Timer
+			_func = _func or _onExecute
+			if WOT.GT.isOn() then
 				--outputDebug()
-				outputChatBox("Timer already running!") --Let the user know
-				return false --end the create transaction
+				outputChatBox("Timer already running!")
+				return false
 			end
-			WOT.GT._t = Timer(_func,_i,0) --Creates a timer
+			WOT.GT._t = Timer(_func,_i,0)
 		end,
-		destroy = function() --Destroys a timer
-			if not WOT.GT.isOn() then --Checks if a timer is not running
+		destroy = function()
+			--Destroy Timer
+			if not WOT.GT.isOn() then
 				--[[outputDebug()]]
-				outputChatBox("Timer not running!") --Let the user know
-				return false--end the destroy transaction
+				outputChatBox("Timer not running!")
+				return false
 			end
-			WOT.GT._t:destroy() --destroy the timer
+			WOT.GT._t:destroy()
 			WOT.GT._t = false
 			executes = 0
 		end
 	},
-	ready = {} --Players that's ready
+	ready = {} --Players Ready
 }
 teamHandler = {
 	teams = {
@@ -58,6 +77,8 @@ mapHandler = {
 	maps = {}
 }
 
+
+
 --Game Timer
 function _lT() --Lobby Timer
 	WOT.GT.executes = WOT.GT.executes - 1
@@ -68,9 +89,16 @@ function _lT() --Lobby Timer
 	end
 end
 addEventHandler("onResourceStart",resourceRoot,function()
+	if(
+		not hasObjectPermissionTo(resource,"function.addAccount") or
+		not hasObjectPermissionTo(resource,"function.startResource") or
+		not hasObjectPermissionTo(resource,"function.stopResource")
+	)then
+		return cancelEvent(true,"ACL Rights not allowed!")
+	end
 	setGameType("Tank Warfare")
 	--Check if anyone's logged in
-	for _,p in ipairs(getElementsByType("player"))do
+	for _,p in ipairs(Element.getAllByType("player"))do
 		if not p:getAccount().guest then
 			p:logOut()
 			p:fadeCamera(false)
@@ -90,6 +118,7 @@ addEventHandler("onResourceStart",resourceRoot,function()
 	for _,m in ipairs(getResources())do
 		if m:getInfo("type") == "map" and m:getInfo("gamemodes") == "WOT" then
 			table.insert(mapHandler.maps,m)
+			MapHandler.addMap(m)
 		end
 	end
 end)
@@ -110,9 +139,12 @@ end)]]
 function startGame()
 	resourceRoot:setData("WOT.lobby",false)
 	WOT.isGameStarted = true
+	Game.setStarted(true)
 	
 	--Get a map ready
-	local map = mapHandler.maps[math.random(#mapHandler.maps)]
+	local map = mapHandler.maps[math.random(#mapHandler.maps)] --MapHandler.getMap(#MapHandler.maps)
+	--MapHandler.setMap(map)
+	--MapHandler.setName(map:getInfo("name"))
 	mapHandler.map = map
 	mapHandler.mapName = map:getInfo("name")
 	map:start()
@@ -128,12 +160,18 @@ function startGame()
 			teamHandler.setPlayerTeam(p)
 		end
 	end
+	--[[for _,p in ipairs(Game.getAllReady())do
+		TeamHandler.setPlayerTeam(p)
+	end]]
 	for _,v in ipairs(getElementsByType("vehicle"))do
 		v.frozen = true
 	end
+	--addEventHandler("onPlayerWasted",root,TeamHandler.spawnDeath)
 	addEventHandler("onPlayerWasted",root,teamHandler.spawnDeath)
 	
-
+	--local Teams = TeamHandler.getTeams()
+	--resourceRoot:setData("WOT.Team1",Teams[1].score)
+	--resourceRoot:setData("WOT.Team2",Teams[2].score)
 	resourceRoot:setData("WOT.Team1",teamHandler.teams[1].score)
 	resourceRoot:setData("WOT.Team2",teamHandler.teams[2].score)
 	
@@ -159,14 +197,21 @@ function startGame()
 					stopGame()
 				end
 			end
+			--GameTimer(1000,_onExecute)
 			WOT.GT.create(1000)
 		end
 	end
+	--GameTimer(1000,_onExecute)
 	WOT.GT.create(1000)
 	
 	resourceRoot:setData("WOT.game",true)
 end
 function stopGame()
+	--[[Game.setStarted(false)
+	local m = MapHandler
+	m.getMap():stop()
+	m.setName("")
+	]]
 	WOT.isGameStarted = false
 	mapHandler.map:stop()
 	mapHandler.map = false
@@ -213,6 +258,7 @@ function stopGame()
 	
 	--Timer for starting game
 	WOT.GT.executes = 30
+	--GameTimer(1000,_lT)
 	WOT.GT.create(1000,_lT)
 	--lets show the lobby
 	resourceRoot:setData("WOT.lobby",true)
@@ -249,7 +295,7 @@ addEventHandler("onPlayerSubmitSignup",root,function(u,p)
 		triggerClientEvent(client,"onClientSignupReturn",client,false,"Something went wrong, please try another username and password!")
 	end
 end)
-addEventHandler("onClientEnter",root,function()
+addEventHandler("onClientEnter",root,function() --Triggered after player presses enter
 	WOT.ready[source] = true
 	if WOT.isGameStarted then
 		--lets get this player in the game
@@ -300,7 +346,7 @@ teamHandler.spawnDeath = function()
 	Timer(function(p,v)
 		p:spawn(0,0,0)
 		p:warpIntoVehicle(v)
-	end,1500,1,p,v)
+	end,1500,1,source,v)
 end
 addEventHandler("onPlayerJoin",root,function() WOT.ready[source] = false end)
 addEventHandler("onPlayerQuit",root,function()
